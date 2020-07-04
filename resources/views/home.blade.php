@@ -24,7 +24,8 @@
             <div class="box-header with-border">
 
                 <div class="box-tools pull-right">
-                    <a href="{{route('maniobras.create')}}" class="btn btn-s btn-primary pull-right"><i class="fa fa-plus" style=" color: white; "> Registrar
+                    <a href="{{route('maniobras.create')}}" class="btn btn-s btn-primary pull-right"><i
+                            class="fa fa-plus" style=" color: white; "> Registrar
                             nueva Maniobra</i></a>
                 </div>
                 <br><br>
@@ -35,9 +36,9 @@
                         <tr>
                             <th>Fecha de ingreso</th>
                             <th>Nombre maniobra </th>
-                            <th>Tramos</th>
-                            <th>Metros</th>
-                            <th>Total</th>
+
+                            <th>Metros Total</th>
+
                             <th>Opciones</th>
                         </tr>
                         @foreach ($maniobras as $maniobra)
@@ -49,19 +50,17 @@
                             <td>
                                 {{$maniobra->nombreManiobra}}
                             </td>
-                            <td>
-                                {{$maniobra->tramos}}
-                            </td>
+
                             <td>
                                 {{$maniobra->metros}}
                             </td>
+
                             <td>
-                                {{$maniobra->metros}}
-                            </td>
-                            <td>
-                                <a href="{{route('maniobras.edit',$maniobra)}}" class="btn btn-s btn-info"><i class="fa fa-pencil-alt"></i></a>
+                                <a href="{{route('maniobras.edit',$maniobra)}}" class="btn btn-s btn-info"><i
+                                        class="fa fa-pencil-alt"></i></a>
                                 <a href="{{route('maniobras.destroy',$maniobra)}}" class="btn btn-s btn-danger"
-                                    onclick="return confirm('Esta seguro que desea eliminar este registro');"><i class="fa fa-times"></i></a>
+                                    onclick="return confirm('Esta seguro que desea eliminar este registro');"><i
+                                        class="fa fa-times"></i></a>
                             </td>
                         </tr>
                         @endforeach

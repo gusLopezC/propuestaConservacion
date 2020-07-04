@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Ui\Presets\React;
 
 use App\MedidasManiobras;
+use PharIo\Manifest\Manifest;
 
 class HomeController extends Controller
 {
@@ -61,8 +62,6 @@ class HomeController extends Controller
             ]);
 
             $total =  $total + $tramo * $request->metros[$contador];
-
-
         }
 
         $maniobra->metros = $total;
@@ -70,6 +69,30 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
+    public function edit(manobrias $maniobra)
+    {
+
+        $MedidasManiobras = MedidasManiobras::where('maniobra_id', '=', $maniobra->id)
+            ->get();
+
+        return view('maniobras.editmanionbra', compact('maniobra', 'MedidasManiobras'));
+    }
+
+
+    public function update(Request $request)
+    {
+
+        $maniobra = manobrias::find($request->id);
+
+        $maniobra->nombreManiobra = $request->nombreManiobra;
+        $maniobra->tramos = $request->tramos;
+        //$maniobra->metros = $request->metros;
+        $maniobra->estatus = $request->estatus;
+        $maniobra->observaciones = $request->observaciones;
+        $maniobra->save();
+
+        return redirect('/home');
+    }
 
     public function destroy(manobrias $maniobra)
     {

@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/maniobras/create', 'HomeController@create')->name('maniobras.create');
 Route::post('/maniobras/save', 'HomeController@save')->name('maniobras.save');
-Route::get('/maniobras/{id}', 'HomeController@edit')->name('maniobras.edit');
+Route::get('/maniobras/{maniobra}', 'HomeController@edit')->name('maniobras.edit');
+Route::post('/maniobras/update/', 'HomeController@update')->name('maniobras.update');
 Route::get('/maniobras/destroy/{maniobra}', 'HomeController@destroy')->name('maniobras.destroy');
 

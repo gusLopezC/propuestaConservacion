@@ -29,7 +29,7 @@
                     <div class="col-lg-12">
 
                         <div id="add-listing">
-                            <form method="POST" action="{{ route('maniobras.save')}}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('maniobras.update')}}">
                                 {{csrf_field()}}
 
                                 <div class="row">
@@ -42,26 +42,29 @@
                                             </div>
                                             <!-- /.card-header -->
                                             <!-- form start -->
-                                            <form method="POST" action="{{ route('maniobras.save')}}"
-                                                enctype="multipart/form-data">
-                                                {{csrf_field()}}
-                                                <div class="card-body">
-                                                    <div class="form-group">
-                                                        <label for="nombreManiobra">Nombre Maniobra</label>
-                                                        <input type="text" class="form-control" name="nombreManiobra"
-                                                            id="nombreManiobra" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nombreManiobra">estatus</label>
-                                                        <input type="text" class="form-control" name="estatus"
-                                                            id="estatus" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                    </div>
-                                                    <label for="nombreManiobra">Observaciones</label>
-                                                    <br>
-                                                    <textarea class="form-control" name="observaciones"
-                                                        id="observaciones" cols="30" rows="10"></textarea required>
+                                            <input type="hidden" class="form-control" name="id"
+                                            id="id"
+                                            value="{{old('id', $maniobra->id)}}"
+                                            required>
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label for="nombreManiobra">Nombre Maniobra</label>
+                                                    <input type="text" class="form-control" name="nombreManiobra"
+                                                        id="nombreManiobra"
+                                                        value="{{old('nombreManiobra', $maniobra->nombreManiobra)}}"
+                                                        required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="nombreManiobra">estatus</label>
+                                                    <input type="text" class="form-control" name="estatus" id="estatus"
+                                                        value="{{old('estatus', $maniobra->estatus)}}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                </div>
+                                                <label for="nombreManiobra">Observaciones</label>
+                                                <br>
+                                                <textarea class="form-control" name="observaciones" id="observaciones"
+                                                    cols="30" rows="10">{{Request::old('body', $maniobra->observaciones)}}</textarea required>
                                                     <br>
                                                     <br>
                                                     <div class="col-md-12">
@@ -72,17 +75,21 @@
                                                                             class="sl sl-icon-cursor-move"></i>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-sm-3">
+
+                                                                        @foreach ($MedidasManiobras as $MedidasManiobras)
+                                                                        <div class="col-sm-4">
                                                                             <div class="fm-input pricing-name"><input
                                                                                     type="text" class="form-control"
                                                                                     name="tramos[]" placeholder="Tramos"
+                                                                                    value="{{old('estatus', $MedidasManiobras->tramos)}}"
                                                                                     required />
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-sm-3">
+                                                                        <div class="col-sm-4">
                                                                             <div class="fm-input pricing-price"><input
                                                                                     type="text" class="form-control"
-                                                                                    name="metros[]" placeholder="Tramos"
+                                                                                    name="metros[]" placeholder="metros"
+                                                                                    value="{{old('estatus', $MedidasManiobras->metros)}}"
                                                                                     required /></div>
                                                                             <div class="fm-close"><a class="delete"
                                                                                     href="#"><i
@@ -96,22 +103,20 @@
                                                                                     required /></div>
 
                                                                             </div>
+                                                                            <br>
+                                                                            @endforeach
                                                                         </div>
+
+
                                                                     </div>
                                                                 </td>
                                                             </tr>
                                                         </table>
-                                                        <a href="#" class="btn btn- secondary add-pricing-list-item">Crear</a>
-                                                        <a  onclick="viewArrayInput()" class="btn btn-primary">Calcular</a >
+                                                        <a href="#" class="button add-pricing-list-item">Crear</a>
                                                     </div>
                                                 </div>
                                                 <!-- Section / End -->
-
-                                                <div class="col-sm-2">
-
-                                                </div>
-
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-12">
                                                     <div class="form-group">
                                                         <label for="exampleInputFile">File input</label>
                                                         <div class="input-group">
@@ -133,24 +138,26 @@
                                         </div>
                                         <!-- /.card-body -->
 
-                                        <div class="card-footer">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
+
+
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
                             </form>
+                            <!-- /.card -->
+
+
+
                         </div>
-                        <!-- /.card -->
-
-
+                        <!--/.col (left) -->
 
                     </div>
-                    <!--/.col (left) -->
-
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 
 </div>
