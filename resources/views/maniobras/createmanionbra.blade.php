@@ -74,14 +74,14 @@
                                                                     <div class="row">
                                                                         <div class="col-sm-3">
                                                                             <div class="fm-input pricing-name"><input
-                                                                                    type="text" class="form-control"
+                                                                                    type="number" class="form-control prc"
                                                                                     name="tramos[]" placeholder="Tramos"
                                                                                     required />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-sm-3">
                                                                             <div class="fm-input pricing-price"><input
-                                                                                    type="text" class="form-control"
+                                                                                    type="number" class="form-control prc"
                                                                                     name="metros[]" placeholder="Tramos"
                                                                                     required /></div>
                                                                             <div class="fm-close"><a class="delete"
@@ -91,7 +91,7 @@
                                                                         </div>
                                                                         <div class="col-sm-4">
                                                                             <div class="fm-input pricing-price"><input
-                                                                                    type="text" class="form-control"
+                                                                                    type="number" class="form-control prc"
                                                                                     name="total[]" readonly placeholder="0.00"
                                                                                     required /></div>
 
@@ -116,8 +116,9 @@
                                                         <label for="exampleInputFile">File input</label>
                                                         <div class="input-group">
                                                             <div class="custom-file">
-                                                                <input type="file" class="custom-file-input"
-                                                                    id="exampleInputFile">
+
+                                                                 <input type='file' name="image[]" id="image[]" accept=".png, .jpg, .jpeg"
+                                                                    class="custom-file-input">
                                                                 <label class="custom-file-label"
                                                                     for="exampleInputFile">Choose file</label>
                                                             </div>
@@ -165,8 +166,7 @@
 @stop
 
 @section('js')
-<script src="https://maps.google.com/maps/api/js?key=AIzaSyAioR39TAyFp6nIBvQGDdcl0Q10TaoMXjw&libraries=places"
-    type="text/javascript"></script>
+
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 <script src="/js/custom.js"></script>

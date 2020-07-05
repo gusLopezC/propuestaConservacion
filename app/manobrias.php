@@ -8,8 +8,12 @@ class manobrias extends Model
 {
 
     protected $fillable = [
-        'nombreManiobra', 'tramos', 'metros','estatus','observaciones','user_id','created_at'
+        'nombreManiobra', 'tramos', 'metros', 'estatus', 'observaciones', 'user_id', 'created_at'
     ];
     //
 
+    public function getPhotos()
+    {
+        return $this->hasMany('App\PhotosManiobra', 'maniobra_id');
+    }
 }

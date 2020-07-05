@@ -38,6 +38,7 @@
                             <th>Nombre maniobra </th>
 
                             <th>Metros Total</th>
+                            <th>Imagen</th>
 
                             <th>Opciones</th>
                         </tr>
@@ -53,6 +54,9 @@
 
                             <td>
                                 {{$maniobra->metros}}
+                            </td>
+                            <td>
+                                <img src="images/{{$maniobra->getPhotos[0]->photo}}" height="70px" width="70px">
                             </td>
 
                             <td>

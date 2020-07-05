@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Ui\Presets\React;
 
 use App\MedidasManiobras;
+use App\PhotosManiobra;
 use PharIo\Manifest\Manifest;
 
 class HomeController extends Controller
@@ -29,7 +30,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $maniobras = manobrias::all();
+        $maniobras = manobrias::with('getPhotos')->get();
+
+
         return view('home', compact('maniobras'));
     }
 
@@ -41,7 +44,7 @@ class HomeController extends Controller
 
     public function save(Request $request)
     {
-        // return $request;
+
         $maniobra = manobrias::create([
             'nombreManiobra' => $request->nombreManiobra,
             'tramos'  => $request->nombreManiobra,
@@ -66,6 +69,23 @@ class HomeController extends Controller
 
         $maniobra->metros = $total;
         $maniobra->save();
+
+
+        if ($image = $request->file('image')) {
+            foreach ($image as $file) {
+                $imageName =  time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path('images'), $imageName);
+
+
+                $photos = PhotosManiobra::create([
+                    'photo' => $imageName,
+                    'maniobra_id' =>  $maniobra->id
+
+                ]);
+            }
+        } else {
+            return redirect()->back()->withInput()->withErrors(['name' => 'The name is required']);
+        }
         return redirect('/home');
     }
 
